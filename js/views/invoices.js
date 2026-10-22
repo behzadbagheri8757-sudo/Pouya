@@ -187,7 +187,8 @@ export async function renderInvoices(App, opts = {}) {
       m.querySelector('#subtotal').textContent=money(z.subtotal);
       m.querySelector('#discount-preview').textContent=money(z.discountTotal);
       m.querySelector('#sum').textContent=money(z.total);
-      m.querySelector('#sticky-sum').textContent=money(z.total);\n      const footerMeta=m.querySelector('#footer-meta');if(footerMeta)footerMeta.textContent=`${num(itemsEl.querySelectorAll('.invoice-row').length)} ردیف`;const words=m.querySelector('#sticky-words');if(words)words.textContent=amountToWordsFa(z.total);
+      m.querySelector('#sticky-sum').textContent=money(z.total);
+      const footerMeta=m.querySelector('#footer-meta');if(footerMeta)footerMeta.textContent=`${num(itemsEl.querySelectorAll('.invoice-row').length)} ردیف`;const words=m.querySelector('#sticky-words');if(words)words.textContent=amountToWordsFa(z.total);
       [...itemsEl.querySelectorAll('.invoice-row')].forEach((r,i)=>{const idx=r.querySelector('.row-index');if(idx)idx.textContent=num(i+1);r.dataset.rowN=String(i);const q=toNumber(r.querySelector('.qty')?.value),p=toNumber(r.querySelector('.price')?.value);const out=r.querySelector('.line-total');if(out)out.textContent=money(Math.max(0,q*p));});
       if(taxEnabled){m.querySelector('#tax-preview').value=money(z.tax);m.querySelector('#tax-total').textContent=money(z.tax);}
       const label=m.querySelector('#discount-label'); if(label) label.textContent=f.discountType.value==='percent'?'تخفیف کلی (٪)':'تخفیف کلی (ریال)';
@@ -200,7 +201,8 @@ export async function renderInvoices(App, opts = {}) {
     let draftSaveTimer=null;
     const persistDraft=()=>{if(existing)return;clearTimeout(draftSaveTimer);draftSaveTimer=setTimeout(()=>{try{const d={savedAt:Date.now(),date:dateHidden.value};for(const key of ['customerId','projectId','status','discountType','discount','extraCosts','paidAmount','notes','jYear','jMonth','jDay']){const el=f.elements.namedItem(key);if(el)d[key]=el.value;}d.items=[...itemsEl.querySelectorAll('.invoice-row')].map(r=>({name:r.querySelector('.item-search').value,qty:r.querySelector('.qty').value,price:r.querySelector('.price').value,discountType:r.querySelector('.rdtype').value,discount:r.querySelector('.rdisc').value,item:r._item||null}));localStorage.setItem('dia.invoice.draft',JSON.stringify(d));}catch{}} ,500);};
     f.addEventListener('input',persistDraft);f.addEventListener('change',persistDraft);
-    m.querySelector('#add-item').onclick=()=>{addRow();const row=itemsEl.lastElementChild;setTimeout(()=>{row.scrollIntoView({block:'center',behavior:'smooth'});row.querySelector('.item-search').focus();},80);};\n    m.querySelector('#footer-add-row').onclick=()=>{addRow();const row=itemsEl.lastElementChild;setTimeout(()=>{row.scrollIntoView({block:'center',behavior:'smooth'});row.querySelector('.item-search').focus();},80);};
+    m.querySelector('#add-item').onclick=()=>{addRow();const row=itemsEl.lastElementChild;setTimeout(()=>{row.scrollIntoView({block:'center',behavior:'smooth'});row.querySelector('.item-search').focus();},80);};
+    m.querySelector('#footer-add-row').onclick=()=>{addRow();const row=itemsEl.lastElementChild;setTimeout(()=>{row.scrollIntoView({block:'center',behavior:'smooth'});row.querySelector('.item-search').focus();},80);};
     [f.discount,f.extraCosts,f.paidAmount].filter(Boolean).forEach(i=>bindAmountInput(i,{allowDecimal:false}));
     f.discount.addEventListener('input',refreshTotals); f.extraCosts?.addEventListener('input',refreshTotals); f.discountType?.addEventListener('change',()=>{f.discount.value='';refreshTotals();});
     const statusSelect=f.querySelector('[name="status"]'), paidHint=m.querySelector('#paid-hint');
