@@ -177,7 +177,10 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .spinner{display:inline-block;width:14px;height:14px;border:2px solid currentColor;border-left-color:transparent;border-radius:50%;vertical-align:-2px;margin-inline-end:5px;animation:invoice-spin .7s linear infinite}
 @keyframes invoice-spin{to{transform:rotate(360deg)}}
 
-.invoice-editor [hidden]{display:none!/* =========================================
+/* این خط رو اصلاح کردم (آکولاد و مهم رو گذاشتم) */
+.invoice-editor [hidden]{display:none !important;}
+
+/* =========================================
    Bottom Nav Glassmorphism & Forward Zoom
    ========================================= */
 
@@ -191,38 +194,39 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 }
 
 /* 2. حالت پایه دکمه‌ها (همیشه کپسولی) */
-.nav-item {
-    border-radius: 999px !important; /* همیشه کپسولی می‌مونه */
-    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) !important; /* انیمیشن فنری و نرم */
+.bottom-nav .nav-item {
+    border-radius: 999px !important; 
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) !important; 
     z-index: 1;
+    transform: scale(1) !important; /* ریست کردن حالت اولیه */
 }
 
 /* 3. افکت زوم به جلو (به جای بالا رفتن) برای گزینه فعال */
-.nav-item.active {
-    background: rgba(8, 127, 112, 0.12) !important; /* رنگ برند با شفافیت */
+.bottom-nav .nav-item.active {
+    background: rgba(8, 127, 112, 0.12) !important; 
     backdrop-filter: blur(8px) !important;
     -webkit-backdrop-filter: blur(8px) !important;
     border: 1px solid rgba(8, 127, 112, 0.2) !important;
-    border-radius: 999px !important; /* تاکید دوباره روی کپسولی بودن */
-    transform: scale(1.08) !important; /* زوم به جلو (بزرگ شدن درجا) */
-    box-shadow: 0 4px 15px rgba(8, 127, 112, 0.15), inset 0 0 8px rgba(255,255,255,0.6) !important; /* عمق شیشه‌ای */
-    z-index: 2 !important; /* میاد روی بقیه المان‌ها */
+    border-radius: 999px !important; 
+    transform: scale(1.05) !important; /* زوم به جلو */
+    box-shadow: 0 4px 15px rgba(8, 127, 112, 0.15), inset 0 0 8px rgba(255,255,255,0.6) !important; 
+    z-index: 2 !important; 
 }
 
 /* 4. زوم کردن آیکون به جلو */
-.nav-item.active .icon {
+.bottom-nav .nav-item.active .icon {
     transform: scale(1.15) !important; 
     filter: drop-shadow(0 2px 4px rgba(8, 127, 112, 0.3)) !important;
 }
 
 /* 5. شخصیت دادن به متن (بدون جابجایی) */
-.nav-item.active small {
+.bottom-nav .nav-item.active small {
     font-weight: 800 !important;
     color: #087f70 !important; 
-    transform: none !important; /* هیچ جابجایی نداره */
+    transform: none !important; 
 }
 
-/* 6. حذف کامل نقطه زیر متن */
-.nav-item.active::after {
+/* 6. حذف کامل نقطه */
+.bottom-nav .nav-item.active::after {
     display: none !important;
 }
