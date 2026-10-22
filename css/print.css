@@ -1,0 +1,22 @@
+@page{size:A4 portrait;margin:9mm 10mm}
+html,body{background:#fff!important}
+.app-header,.bottom-nav,#toast-root,.no-print,.invoice-action-bar{display:none!important}
+.view{max-width:none!important;padding:0!important;margin:0!important}
+.page-title-row{display:none!important}
+.modal-backdrop{position:static!important;background:none!important}.modal{position:static!important;width:100%!important;max-height:none!important;overflow:visible!important;padding:0!important;border-radius:0!important;box-shadow:none!important;background:#fff!important}
+.card{box-shadow:none!important}
+body.printing-invoice .view>*{display:none!important}
+body.printing-invoice .view>.detail-invoice{display:block!important;width:100%!important;margin:0!important;padding:0!important;border:0!important;box-shadow:none!important;background:#fff!important}
+body.printing-invoice .invoice-paper{display:block!important}
+body.printing-invoice .invoice-table-wrap{overflow:visible!important}
+body.printing-invoice .clean-invoice-table{width:100%!important;table-layout:fixed!important}
+body.printing-invoice .clean-invoice-table th,body.printing-invoice .clean-invoice-table td{font-size:8.4pt!important;padding:6px 5px!important}
+body.printing-invoice .invoice-logo{width:42px!important;height:42px!important}
+body.printing-invoice .invoice-business-name{font-size:16pt!important}
+body.printing-invoice .invoice-doc-label{font-size:17pt!important}
+body.printing-invoice .invoice-info-card{padding:8px 10px!important}
+body.printing-invoice .invoice-summary-box{font-size:8.8pt!important}
+body.printing-invoice .invoice-footer-note{margin-top:12px!important}
+body.printing-statement .view>*:not(#statement):not(.page-title-row){display:none!important}
+body.printing-statement .page-title-row{display:none!important}
+body.printing-statement #statement{display:block!important}
